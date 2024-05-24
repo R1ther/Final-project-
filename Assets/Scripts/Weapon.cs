@@ -23,7 +23,7 @@ public class Weapon : Sounds
     [SerializeField] private TMP_Text CA;
     [SerializeField] private TMP_Text AA;
 
-    [SerializeField] private RagdollEnemy _enemy;
+    [SerializeField, Range(0, 1000)] private float _force;
 
     private void Start()
     {
@@ -67,9 +67,15 @@ public class Weapon : Sounds
         if (Physics.Raycast(ray, out hit))
         {
             targetPoint = hit.point;
-            if(hit.collider.CompareTag("Enemy"))
+
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+
+            if(damageable != null)
             {
-                _enemy.Kill();
+                Vector3 forceDirection = (hit.point - mainCamera.transform.position).normalized;
+                forceDirection.y = 0;
+
+                damageable.TakeDamage(forceDirection * _force, hit.point);
             }
         }
         else

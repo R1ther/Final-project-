@@ -7,7 +7,7 @@ public class EnemyController : Sounds
 {
     [SerializeField] private GameObject Player;
     private Animator _anim;
-    private Health_Player _hp;
+    [SerializeField] private Health_Player _hp;
     [SerializeField] private Transform _spawnRay;
     public GameObject bullet;
     public Transform spawnBullet;
@@ -26,7 +26,6 @@ public class EnemyController : Sounds
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _hp = GetComponent<Health_Player>();
         _au = GetComponent<AudioSource>();
         EnemyCollider = GetComponent<BoxCollider>();
     }
@@ -66,7 +65,7 @@ public class EnemyController : Sounds
             targetPoint = hit.point;
             if(hit.collider.CompareTag("Player"))
             {
-                _hp.Health -= 48;
+                _hp.HealthDown();
             }
         }
         else
