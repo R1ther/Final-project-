@@ -5,10 +5,11 @@ public class NextLevel : MonoBehaviour
 {
     void OnTriggerEnter(Collider col)
     {
-        if (col.transform.CompareTag("Finish"))
+        if (col.transform.CompareTag("Player"))
         {
-            int n = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(n++);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            SceneManager.LoadScene("Finish");
         }
     }
 }

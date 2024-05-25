@@ -7,6 +7,8 @@ public class Obstacle : MonoBehaviour
     {
         if(col.transform.CompareTag("Player"))
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             SceneManager.LoadScene("Lose");
         }
     }

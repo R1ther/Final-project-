@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Health_Player : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Health_Player : MonoBehaviour
         if(Health < 0)
         {
             Health = 0;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            SceneManager.LoadScene("Lose");
         }
     }
     public void HealthDown()
